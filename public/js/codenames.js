@@ -46,6 +46,7 @@ let buttonBasecards = document.getElementById('base-pack')
 let buttonDuetcards = document.getElementById('duet-pack')
 let buttonUndercovercards = document.getElementById('undercover-pack')
 let buttonNLSScards = document.getElementById('nlss-pack')
+let buttonFriendcards = document.getElementById('friend-pack')
 // Slider
 let timerSlider = document.getElementById('timer-slider')
 let timerSliderLabel = document.getElementById('timer-slider-label')
@@ -77,7 +78,7 @@ buttonRoleSpymaster.disabled = false;
 // UI Interaction with server
 ////////////////////////////////////////////////////////////////////////////
 // User Joins Room
-joinEnter.onclick = () => {       
+joinEnter.onclick = () => {
   socket.emit('joinRoom', {
     nickname:joinNickname.value,
     room:joinRoom.value,
@@ -85,7 +86,7 @@ joinEnter.onclick = () => {
   })
 }
 // User Creates Room
-joinCreate.onclick = () => {      
+joinCreate.onclick = () => {
   socket.emit('createRoom', {
     nickname:joinNickname.value,
     room:joinRoom.value,
@@ -93,47 +94,47 @@ joinCreate.onclick = () => {
   })
 }
 // User Leaves Room
-leaveRoom.onclick = () => {       
+leaveRoom.onclick = () => {
   socket.emit('leaveRoom', {})
 }
 // User Joins Red Team
-joinRed.onclick = () => {         
+joinRed.onclick = () => {
   socket.emit('joinTeam', {
     team:'red'
   })
 }
 // User Joins Blue Team
-joinBlue.onclick = () => {        
+joinBlue.onclick = () => {
   socket.emit('joinTeam', {
     team:'blue'
   })
 }
 // User Randomizes Team
-randomizeTeams.onclick = () => {  
+randomizeTeams.onclick = () => {
   socket.emit('randomizeTeams', {})
 }
 // User Starts New Game
-newGame.onclick = () => {         
+newGame.onclick = () => {
   socket.emit('newGame', {})
 }
 // User Picks spymaster Role
-buttonRoleSpymaster.onclick = () => { 
+buttonRoleSpymaster.onclick = () => {
   socket.emit('switchRole', {role:'spymaster'})
 }
 // User Picks guesser Role
-buttonRoleGuesser.onclick = () => {   
+buttonRoleGuesser.onclick = () => {
   socket.emit('switchRole', {role:'guesser'})
 }
 // User Picks Hard Difficulty
 buttonDifficultyHard.onclick = () => {
   socket.emit('switchDifficulty', {difficulty:'hard'})
 }
-// User Picks Normal Difficulty 
+// User Picks Normal Difficulty
 buttonDifficultyNormal.onclick = () => {
   socket.emit('switchDifficulty', {difficulty:'normal'})
 }
 // User Picks Timed Mode
-buttonModeTimed.onclick = () => { 
+buttonModeTimed.onclick = () => {
   socket.emit('switchMode', {mode:'timed'})
 }
 // User Picks Casual Mode
@@ -175,6 +176,11 @@ buttonUndercovercards.onclick = () => {
 // User Clicks card pack
 buttonNLSScards.onclick = () => {
   socket.emit('changeCards', {pack:'nlss'})
+}
+
+// User Clicks card pack
+buttonFriendcards.onclick = () => {
+  socket.emit('changeCards', {pack:'friends'})
 }
 
 // When the slider is changed
@@ -402,6 +408,6 @@ function updatePlayerlist(players){
 // Client Side UI Elements
 
 // Hide donate banner
-document.getElementById('donate-hide').onclick = () => { 
+document.getElementById('donate-hide').onclick = () => {
   document.getElementById('donate').className = 'hide'
 }

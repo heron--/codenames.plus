@@ -26,6 +26,13 @@ readline.createInterface({
     terminal: false
 }).on('line', (line) => {duetwords.push(line)})
 
+let friendwords = []
+filename = './server/friends.txt'
+readline.createInterface({
+    input: fs.createReadStream(filename),
+    terminal: false
+}).on('line', (line) => {friendwords.push(line)})
+
 // Load Undercover words into an array
 let undercoverwords = []
 filename = './server/undercover-words.txt'
@@ -44,6 +51,7 @@ class Game{
     this.duet = false
     this.undercover = false
     this.nlss = false
+    this.friends = false;
 
     this.init();
 
@@ -157,7 +165,7 @@ class Game{
       for (let j = 0; j < 5; j++){
         foundWord = this.words[Math.floor(Math.random() * this.words.length)] // Pick a random word from the pool
         // If the word is already on the board, pick another
-        while (usedWords.includes(foundWord)){  
+        while (usedWords.includes(foundWord)){
           foundWord = this.words[Math.floor(Math.random() * this.words.length)]
         }
         usedWords.push(foundWord) // Add the word to the used list
@@ -169,7 +177,7 @@ class Game{
       }
     }
     this.initBoard() // randomly select the team words and death word
-    
+
     this.red = this.findType('red') // Update the number of each teams words
     this.blue = this.findType('blue')
   }
@@ -180,6 +188,7 @@ class Game{
     if (this.duet) pool = pool.concat(duetwords)
     if (this.undercover) pool = pool.concat(undercoverwords)
     if (this.nlss) pool = pool.concat(nlsswords)
+    if (this.friends) pool = pool.concat(friendwords)
     this.words = pool
   }
 
