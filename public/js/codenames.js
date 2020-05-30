@@ -343,6 +343,8 @@ function updatePacks(game){
   if (game.undercover) buttonUndercovercards.className = 'enabled'
   else buttonUndercovercards.className = ''
   if (game.nlss) buttonNLSScards.className = 'enabled'
+  else buttonUndercovercards.className = ''
+  if (game.friends) buttonFriendcards.className = 'enabled'
   else buttonNLSScards.className = ''
   document.getElementById('word-pool').innerHTML = "Word Pool: " + game.words.length
 }
