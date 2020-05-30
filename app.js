@@ -225,7 +225,7 @@ io.sockets.on('connection', function(socket){
       game.friends = !game.friends
     }
     // If all options are disabled, re-enable the base pack
-    if (!game.base && !game.duet && !game.undercover && !game.nlss) game.base = true
+    if (!game.base && !game.duet && !game.undercover && !game.nlss && !game.friends) game.base = true
 
     game.updateWordPool()
     gameUpdate(room)
